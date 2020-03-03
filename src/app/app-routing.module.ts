@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './componentes/login/login/login.component';
-import {AgregarComponent} from './componentes/producto/agregar/agregar.component';
-import {EditarComponent} from './componentes/producto/editar/editar.component';
-import {ListarComponent} from './componentes/producto/listar/listar.component';
-import {VerComponent} from './componentes/producto/ver/ver.component';
+
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'producto/agregar', component: AgregarComponent},
-  {path: 'producto/editar', component: EditarComponent},
-  {path: 'producto/listar', component: ListarComponent},
-  {path: 'producto/ver', component: VerComponent},
+  {path: 'producto', loadChildren: () => import('./modulos/producto/producto.module').then(m => m.ProductoModule)},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '**', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({

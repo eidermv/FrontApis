@@ -1,9 +1,36 @@
 <div class="container">
-  <h1>Iniciar sesión</h1>
+  <mat-card>
+    <mat-card-title>
+      <h1>Login</h1>
+    </mat-card-title>
+    <mat-card-content>
+      <form (submit)="iniciar()" [formGroup]="loginForm">
+        <p>
+          <mat-form-field  [hideRequiredMarker]="optiones.value.hideRequired" [floatLabel]="optiones.value.floatLabel">
+            <mat-label>Usuario</mat-label>
+            <input type="text" matInput placeholder="Ex. juan" formControlName="usuario" autocomplete="false" required>
+            <mat-error *ngIf="this.esValidoUser()">
+              Usuario es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </p>
+<p>
+  <mat-form-field [hideRequiredMarker]="optiones.value.hideRequired" [floatLabel]="optiones.value.floatLabel">
+    <mat-label>Contrase&ntilde;a</mat-label>
+    <input type="password" matInput placeholder="*****"  formControlName="contrasenia" required>
+    <mat-error *ngIf="this.esValidoPass()">
+      Contrase&ntilde;a es <strong>requerida</strong>
+    </mat-error>
+  </mat-form-field>
+</p>
+        <mat-error *ngIf="this.esInvalidoForm">
+          Formulario es <strong>invalido</strong>
+        </mat-error>
 
-  <form class="form">
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-    <button type="submit" id="login-button">Login</button>
-  </form>
+
+        <button type="submit" mat-raised-button color="primary">Iniciar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
+
