@@ -11,10 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LoginService} from './servicios/login.service';
 
-import {MaterialModule} from './modulos/material/material.module';
 import { ProductoModule } from './modulos/producto/producto.module';
 
 import {MatIcon, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule} from '@angular/material';
+
+import { SesionService } from './servicios/sesion.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatIcon, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonMod
     MatButtonModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    SesionService
   ],
   bootstrap: [AppComponent]
 })
