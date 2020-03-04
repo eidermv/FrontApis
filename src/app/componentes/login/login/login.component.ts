@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       hideRequired: true,
       floatLabel: 'auto'
     });
+    this.login = new Login();
   }
 
   esValidoUser() {
@@ -43,7 +44,9 @@ export class LoginComponent implements OnInit {
   iniciar() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value.usuario);
-      // this.loginService.login(this.login);
+      this.login.usuario = this.loginForm.value.usuario;
+      this.login.contrasenia = this.loginForm.value.contrasenia;
+      this.loginService.login(this.login);
       this.onResetForm();
       this.esInvalidoForm = false;
     } else {

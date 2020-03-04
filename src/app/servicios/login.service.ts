@@ -3,48 +3,88 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Login} from '../modelos/login';
 import {environment} from '../../environments/environment';
 import {SesionService} from './sesion.service';
+import {UsuarioService} from './usuario.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  private httpOpciones: any;
+
   constructor(
     private http: HttpClient,
-    private sesionService: SesionService
+    private sesionService: SesionService,
+    private usuarioService: UsuarioService
     ) { }
 
-  // Http Headers
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+  login(login: Login) {
 
-  login(login: Login): string {
+    this.httpOpciones = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
     this.http.post(environment.apiUrl + '/login/iniciarS', {
       usuario: login.usuario,
       contrasenia: login.contrasenia,
-    }, this.httpOptions).subscribe(data => {
-        for (const d of (data as any)) {
-          // console.log(this.smartphone);
-          if (d.estado === 'Fallo') {
-            this.sesionService.cerroSesion();
-            console.log(d.mensaje);
-          } else {
-            this.sesionService.seLogeo();
-            console.log(d.id);
-          }
+    }, this.httpOpciones).subscribe((data: any) => {
+      // console.log(data.estado);
+        if (data.estado === 'Fallo') {
+          this.sesionService.cerroSesion();
+          // console.log(data.mensaje);
+        } else {
+          this.sesionService.seLogeo();
+          this.usuarioService.setAutenticacion(data.token);
+          console.log('token ----'+this.usuarioService.getAutenticacion());
+          this.usuarioService.cargarUsuario(data.id);
+          // console.log(data.id);
         }
+      // for (const d of (data as any)) {
+          // console.log(this.smartphone);
+       // }
     },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
-          console.log('Client error');
+          console.log('Client error', err);
         } else {
-          console.log('Server error');
+          console.log('Server error', err);
         }
       }
     );
-    return " ";
+  }
+
+  cerrarSesion() {
+
+    this.httpOpciones = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'access-token': this.usuarioService.getAutenticacion()
+      })
+    };
+// console.log('token1 ' + this.usuarioService.getUsuario().nombre);
+    this.http.post(environment.apiUrl + '/login/cerrarS', {
+      id: this.usuarioService.getUsuario().id,
+    }, this.httpOpciones).subscribe((data: any) => {
+        if (data.estado === 'Fallo') {
+          console.log(data.mensaje);
+        } else {
+          this.sesionService.cerroSesion();
+          console.log('se cerro sesion');
+        }
+        // for (const d of (data as any)) {
+          // console.log(this.smartphone);
+        // }
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log('Client error', err);
+        } else {
+          console.log('Server error', err);
+        }
+      }
+    );
   }
 }

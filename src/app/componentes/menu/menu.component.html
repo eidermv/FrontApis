@@ -1,0 +1,4 @@
+<div class="menu" *ngIf="this.getLogeado()">
+    <h3>Hola {{usuario().nombre}} {{usuario().apellido}}</h3>
+    <button mat-raised-button color="primary" (click)="cerrarS()">Cerrar Sesion</button>
+</div>

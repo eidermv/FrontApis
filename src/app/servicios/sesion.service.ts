@@ -5,12 +5,10 @@ import {Usuario} from '../modelos/usuario';
   providedIn: 'root'
 })
 export class SesionService {
-  private logeado: boolean;
-  private usuario: Usuario;
 
-  constructor() {
-    this.logeado = false;
-  }
+  private logeado: boolean = false;
+
+  constructor() { }
 
   seLogeo() {
     this.logeado = true;
@@ -20,7 +18,8 @@ export class SesionService {
     this.logeado = false;
   }
 
-  estaLogeado() {
+  estaLogeado(): boolean {
     return this.logeado;
   }
+
 }

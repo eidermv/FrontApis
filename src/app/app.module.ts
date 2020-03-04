@@ -16,12 +16,15 @@ import { ProductoModule } from './modulos/producto/producto.module';
 import {MatIcon, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule} from '@angular/material';
 
 import { SesionService } from './servicios/sesion.service';
+import { MenuComponent } from './componentes/menu/menu.component';
+import {UsuarioService} from './servicios/usuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MatIcon
+    MatIcon,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { SesionService } from './servicios/sesion.service';
   ],
   providers: [
     LoginService,
-    SesionService
+    SesionService,
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })
