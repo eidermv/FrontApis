@@ -47,12 +47,18 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value.usuario);
       this.login.usuario = this.loginForm.value.usuario;
       this.login.contrasenia = this.loginForm.value.contrasenia;
-      if (this.loginService.login(this.login)) {
-        this.esInvalidoForm = false;
-      } else {
-        this.onResetForm();
-        this.esInvalidoForm = true;
-      }
+      this.loginService.login(this.login);
+      setTimeout(() => {
+        // console.log('valor de rta ---- ' + this.productoService.resultado);
+        if (this.loginService.correcto) {
+          this.esInvalidoForm = false;
+          this.onResetForm();
+        } else {
+          this.onResetForm();
+          this.esInvalidoForm = true;
+        }
+      }, 500);
+      this.loginService.correcto = false;
     } else {
       this.esInvalidoForm = true;
     }

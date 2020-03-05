@@ -14,13 +14,16 @@ import {ListarComponent} from '../componentes/producto/listar/listar.component';
 export class LoginService {
 
   private httpOpciones: any;
+  correcto: boolean;
 
   constructor(
     private http: HttpClient,
     private sesionService: SesionService,
     private usuarioService: UsuarioService,
     private router: Router
-    ) { }
+    ) {
+    this.correcto = false;
+  }
 
   login(login: Login): boolean {
 
@@ -38,6 +41,7 @@ export class LoginService {
         if (data.estado === 'Fallo') {
           this.sesionService.cerroSesion();
           // console.log(data.mensaje);
+          this.correcto = false;
           return false;
         } else {
           this.sesionService.seLogeo();
@@ -45,6 +49,7 @@ export class LoginService {
           this.usuarioService.setAutenticacion(data.token);
           // console.log('token ----'+this.usuarioService.getAutenticacion());
           this.usuarioService.cargarUsuario(data.id);
+          this.correcto = true;
           return true;
           // console.log(data.id);
         }

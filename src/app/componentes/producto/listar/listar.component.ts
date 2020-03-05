@@ -55,6 +55,7 @@ export class ListarComponent implements OnInit {
   }
 
   editar(id: number) {
+    this.productoService.getProducto(id);
     this.router.navigateByUrl('/producto/editar');
   }
 
