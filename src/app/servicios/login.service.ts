@@ -4,6 +4,8 @@ import {Login} from '../modelos/login';
 import {environment} from '../../environments/environment';
 import {SesionService} from './sesion.service';
 import {UsuarioService} from './usuario.service';
+import {Router} from '@angular/router';
+import {ListarComponent} from '../componentes/producto/listar/listar.component';
 
 
 @Injectable({
@@ -16,7 +18,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private sesionService: SesionService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
     ) { }
 
   login(login: Login) {
@@ -37,9 +40,11 @@ export class LoginService {
           // console.log(data.mensaje);
         } else {
           this.sesionService.seLogeo();
+          console.log('-- usuario esta logeado ? ' + this.sesionService.estaLogeado());
           this.usuarioService.setAutenticacion(data.token);
-          console.log('token ----'+this.usuarioService.getAutenticacion());
+          // console.log('token ----'+this.usuarioService.getAutenticacion());
           this.usuarioService.cargarUsuario(data.id);
+
           // console.log(data.id);
         }
       // for (const d of (data as any)) {

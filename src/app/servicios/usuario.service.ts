@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Usuario} from '../modelos/usuario';
 import {environment} from '../../environments/environment';
+import {ListarComponent} from '../componentes/producto/listar/listar.component';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,12 @@ export class UsuarioService {
   private autenticacion: string = '';
   private httpOpciones: any;
   // private headers = new HttpHeaders({ 'Content-Type': 'application/json', 'access-token': this.autenticacion });
+  private listarComponent: ListarComponent;
 
-  constructor(private http: HttpClient) {  }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {  }
 
   // Http Headers con token
 // {
@@ -37,6 +43,7 @@ export class UsuarioService {
           this.usuario.nombre = data.uexiste.Nombres;
           this.usuario.apellido = data.uexiste.Apellidos;
           console.log('usuario cargado');
+          this.router.navigateByUrl('/producto/listar');
           /*
           Id: us.id_usuario,
                         Nombres: us.nombre,

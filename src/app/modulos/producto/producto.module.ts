@@ -6,6 +6,9 @@ import {AgregarComponent} from '../../componentes/producto/agregar/agregar.compo
 import {EditarComponent} from '../../componentes/producto/editar/editar.component';
 import {ListarComponent} from '../../componentes/producto/listar/listar.component';
 import {VerComponent} from '../../componentes/producto/ver/ver.component';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatIcon, MatInputModule, MatTableModule} from '@angular/material';
+import {CategoriaService} from '../../servicios/categoria.service';
+import {ProductoService} from '../../servicios/producto.service';
 
 
 @NgModule({
@@ -13,11 +16,21 @@ import {VerComponent} from '../../componentes/producto/ver/ver.component';
     AgregarComponent,
     EditarComponent,
     ListarComponent,
-    VerComponent
+    VerComponent,
+    MatIcon
   ],
   imports: [
     CommonModule,
-    ProductoRoutingModule
+    ProductoRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule
+  ],
+  providers: [
+    CategoriaService,
+    ProductoService
   ]
 })
 export class ProductoModule { }

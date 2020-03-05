@@ -13,6 +13,7 @@ export class ControlGuard implements CanActivate {
   }
   canActivate() {
     if (!this.sesionService.estaLogeado()) {
+      console.log('usuario esta logeado ? ' + this.sesionService.estaLogeado());
       console.log('No estás logueado');
       this.router.navigateByUrl('/login');
       return false;
