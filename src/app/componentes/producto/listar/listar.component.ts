@@ -60,7 +60,7 @@ export class ListarComponent implements OnInit {
   }
 
   ver(id: number) {
-
+    this.productoService.getProducto(id);
     this.router.navigateByUrl('/producto/ver');
   }
 
