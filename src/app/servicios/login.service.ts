@@ -22,7 +22,7 @@ export class LoginService {
     private router: Router
     ) { }
 
-  login(login: Login) {
+  login(login: Login): boolean {
 
     this.httpOpciones = {
       headers: new HttpHeaders({
@@ -38,13 +38,14 @@ export class LoginService {
         if (data.estado === 'Fallo') {
           this.sesionService.cerroSesion();
           // console.log(data.mensaje);
+          return false;
         } else {
           this.sesionService.seLogeo();
           console.log('-- usuario esta logeado ? ' + this.sesionService.estaLogeado());
           this.usuarioService.setAutenticacion(data.token);
           // console.log('token ----'+this.usuarioService.getAutenticacion());
           this.usuarioService.cargarUsuario(data.id);
-
+          return true;
           // console.log(data.id);
         }
       // for (const d of (data as any)) {
@@ -59,6 +60,7 @@ export class LoginService {
         }
       }
     );
+    return false;
   }
 
   cerrarSesion() {

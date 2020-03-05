@@ -51,18 +51,20 @@ export class ListarComponent implements OnInit {
   }
 
   agregar() {
-    this.router.navigateByUrl('/agregar');
+    this.router.navigateByUrl('/producto/agregar');
   }
 
-  editar() {
-    this.router.navigateByUrl('/editar');
+  editar(id: number) {
+    this.router.navigateByUrl('/producto/editar');
   }
 
-  ver() {
-    this.router.navigateByUrl('/ver');
+  ver(id: number) {
+
+    this.router.navigateByUrl('/producto/ver');
   }
 
-  eliminar() {
+  eliminar(id: number) {
+    console.log('eliminar producto ' + id);
 
   }
 }

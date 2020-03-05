@@ -16,11 +16,15 @@ export class ProductoService {
   private productos: Producto[] = [];
   private listar: ListarComponent;
 
+  resultado: boolean;
+
   constructor(
     private http: HttpClient,
     private usuarioService: UsuarioService,
     private categoriaService: CategoriaService
-  ) { }
+  ) {
+    this.resultado = false;
+  }
 
 
   /*
@@ -166,8 +170,10 @@ https://localhost:3000/producto/eliminar
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
           console.log(data.mensaje);
+          this.resultado = false;
         } else {
           console.log('producto agregado');
+          this.resultado = true;
           return true;
           /*
           Id: prod.id_producto,
@@ -211,8 +217,10 @@ https://localhost:3000/producto/eliminar
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
           console.log(data.mensaje);
+          this.resultado = false;
         } else {
           console.log('producto actualizado');
+          this.resultado = true;
           return true;
           /*
           Id: prod.id_producto,
@@ -251,8 +259,10 @@ https://localhost:3000/producto/eliminar
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
           console.log(data.mensaje);
+          this.resultado = false;
         } else {
           console.log('producto actualizado');
+          this.resultado = true;
           return true;
           /*
           Id: prod.id_producto,

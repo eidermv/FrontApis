@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder
+  ) {
     this.optiones = fb.group({
       hideRequired: true,
       floatLabel: 'auto'
@@ -46,9 +47,12 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm.value.usuario);
       this.login.usuario = this.loginForm.value.usuario;
       this.login.contrasenia = this.loginForm.value.contrasenia;
-      this.loginService.login(this.login);
-      this.onResetForm();
-      this.esInvalidoForm = false;
+      if (this.loginService.login(this.login)) {
+        this.esInvalidoForm = false;
+      } else {
+        this.onResetForm();
+        this.esInvalidoForm = true;
+      }
     } else {
       this.esInvalidoForm = true;
     }
