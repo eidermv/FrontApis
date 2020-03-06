@@ -1,0 +1,13 @@
+<h1 mat-dialog-title class="titulo">Confirmaci&oacute;n</h1>
+<div mat-dialog-content>
+  <p>Desea eliminar producto {{data.nombre}} ?</p>
+
+  <div class="alert alert-success" *ngIf="this.eliminado">
+    <strong>Correcto!</strong> Produto se elimino correctamente.
+  </div>
+
+</div>
+<div mat-dialog-actions *ngIf="!this.eliminado">
+  <button mat-button (click)="noClick()">No</button>
+  <button mat-button (click)="okClick()"  cdkFocusInitial>Ok</button>
+</div>

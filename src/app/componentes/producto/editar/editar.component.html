@@ -1,11 +1,11 @@
 <div class="container">
-  <mat-card>
-    <mat-card-title>
-      <h2>Editar Producto</h2>
+  <mat-card class="col-7 centrar-card">
+    <mat-card-title class="full-titulo">
+      <h2 class="centra">Editar Producto</h2>
     </mat-card-title>
     <mat-card-content>
-      <p>
-        <button mat-raised-button color="primary" (click)="volver()"><mat-icon>arrow_back</mat-icon></button>
+      <p class="full">
+        <button class="izq" mat-raised-button color="primary" (click)="volver()"><mat-icon>arrow_back</mat-icon></button>
       </p>
       <form (submit)="guardar()" [formGroup]="productoForm">
         <p>
@@ -67,8 +67,8 @@
           <strong>Correcto!</strong> Produto se guardo correctamente.
         </div>
 
-        <p>
-          <button type="submit" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
+        <p class="centrar-boton">
+          <button class="animacion centrar" type="submit" mat-raised-button color="primary"><mat-icon>save</mat-icon></button>
         </p>
       </form>
     </mat-card-content>

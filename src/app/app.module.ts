@@ -13,37 +13,43 @@ import {LoginService} from './servicios/login.service';
 
 import { ProductoModule } from './modulos/producto/producto.module';
 
-import {MatIcon, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule} from '@angular/material';
+import {MatIcon, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule} from '@angular/material';
 
 import { SesionService } from './servicios/sesion.service';
 import { MenuComponent } from './componentes/menu/menu.component';
 import {UsuarioService} from './servicios/usuario.service';
+import { DialogoComponent } from './componentes/dialogo/dialogo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     // MatIcon,
-    MenuComponent
+    MenuComponent,
+    DialogoComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    // MaterialModule,
-    ProductoModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        // MaterialModule,
+        ProductoModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDialogModule
+    ],
   providers: [
     LoginService,
     SesionService,
     UsuarioService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DialogoComponent
+  ]
 })
 export class AppModule { }

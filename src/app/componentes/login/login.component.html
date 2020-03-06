@@ -1,12 +1,12 @@
 <div class="container">
-  <mat-card>
-    <mat-card-title>
+  <mat-card class="col-6 centrar">
+    <mat-card-title class="azul">
       <h1>Login</h1>
     </mat-card-title>
     <mat-card-content>
       <form (submit)="iniciar()" [formGroup]="loginForm">
         <p>
-          <mat-form-field  [hideRequiredMarker]="optiones.value.hideRequired" [floatLabel]="optiones.value.floatLabel">
+          <mat-form-field [hideRequiredMarker]="optiones.value.hideRequired" [floatLabel]="optiones.value.floatLabel">
             <mat-label>Usuario</mat-label>
             <input type="text" matInput placeholder="Ex. juan" formControlName="usuario" autocomplete="false" required>
             <mat-error *ngIf="this.esValidoUser()">
@@ -27,8 +27,10 @@
           Usuario o Contrase&ntilde;a es <strong>invalido</strong>
         </mat-error>
 
+<p class="centrar-boton">
+  <button class="animacion centrar" type="submit" mat-raised-button color="primary">Iniciar</button>
+</p>
 
-        <button type="submit" mat-raised-button color="primary">Iniciar</button>
       </form>
     </mat-card-content>
   </mat-card>

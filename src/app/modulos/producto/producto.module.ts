@@ -18,6 +18,7 @@ import {
 import {CategoriaService} from '../../servicios/categoria.service';
 import {ProductoService} from '../../servicios/producto.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import {DialogoComponent} from '../../componentes/dialogo/dialogo.component';
 
 
 @NgModule({

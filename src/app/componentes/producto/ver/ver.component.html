@@ -1,13 +1,13 @@
 <div class="container">
-  <mat-card>
-    <mat-card-title>
-      <h2>Editar Producto</h2>
+  <mat-card class="col-7 centrar-card">
+    <mat-card-title class="full-titulo">
+      <h2 class="centra">Ver Producto</h2>
     </mat-card-title>
     <mat-card-content>
-      <p>
-        <button mat-raised-button color="primary" (click)="volver()"><mat-icon>arrow_back</mat-icon></button>
+      <p class="full">
+        <button class="izq" mat-raised-button color="primary" (click)="volver()"><mat-icon>arrow_back</mat-icon></button>
       </p>
-      <form (submit)="guardar()" [formGroup]="productoForm">
+      <form [formGroup]="productoForm">
         <p>
           <mat-form-field>
             <mat-label>Nombre</mat-label>

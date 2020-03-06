@@ -61,7 +61,7 @@ https://localhost:3000/producto/eliminar
             }
 
           });
-          console.log('cantidad de productos ---- ' + this.productos.length);
+          // console.log('cantidad de productos ---- ' + this.productos.length);
           // for (const p of data.datos) {
           //   if (this.categoriaService.getCategoria(p.Categoria) !== ' ') {
           //     this.producto = new Producto();
@@ -75,7 +75,7 @@ https://localhost:3000/producto/eliminar
           //     this.productos.push(this.producto);
           //   }
           // }
-          console.log('productos cargado ----' + data);
+          // console.log('productos cargado ----' + data);
           return this.productos;
           /*
           Id: prod.id_producto,
@@ -121,7 +121,7 @@ https://localhost:3000/producto/eliminar
           this.producto.cantidad = Number(data.datos.Cantidad);
           this.producto.id_categoria = Number(data.datos.Categoria);
           this.producto.categoria = this.categoriaService.getCategoria(data.datos.Categoria);
-          console.log('usuario cargado');
+          // console.log('usuario cargado');
           /*
           Id: prod.id_producto,
           Nombre: prod.nombre,
@@ -169,10 +169,10 @@ https://localhost:3000/producto/eliminar
       categoria: product.id_categoria
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
-          console.log(data.mensaje);
+          // console.log(data.mensaje);
           this.resultado = false;
         } else {
-          console.log('producto agregado');
+          // console.log('producto agregado');
           this.resultado = true;
           return true;
           /*
@@ -216,10 +216,10 @@ https://localhost:3000/producto/eliminar
       categoria: product.id_categoria
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
-          console.log(data.mensaje);
+          // console.log(data.mensaje);
           this.resultado = false;
         } else {
-          console.log('producto actualizado');
+          // console.log('producto actualizado');
           this.resultado = true;
           return true;
           /*
@@ -258,10 +258,10 @@ https://localhost:3000/producto/eliminar
       id: idP
     }, this.httpOpciones).subscribe((data: any) => {
         if (data.estado === 'Fallo') {
-          console.log(data.mensaje);
+          // console.log(data.mensaje);
           this.resultado = false;
         } else {
-          console.log('producto actualizado');
+          // console.log('producto eliminado');
           this.resultado = true;
           return true;
           /*

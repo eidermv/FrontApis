@@ -1,4 +1,6 @@
 <div class="menu" *ngIf="this.getLogeado()">
-    <h3>Hola {{usuario().nombre}} {{usuario().apellido}}</h3>
+  <div class="izq">
+    <h4>Hola {{usuario().nombre}} {{usuario().apellido}}</h4>
     <button mat-raised-button color="primary" (click)="cerrarS()">Cerrar Sesion</button>
+  </div>
 </div>
