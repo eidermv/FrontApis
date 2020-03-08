@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatTableDataSource} from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {Producto} from '../../../modelos/producto';
 import {Router} from '@angular/router';
 import {ProductoService} from '../../../servicios/producto.service';
@@ -18,6 +18,8 @@ export class ListarComponent implements OnInit {
 // id_producto, nombre, porcentaje_ganancia, precio, cantidad, id_categoria
   displayedColumns: string[] = ['id', 'nombre', 'porcentaje', 'precio', 'cantidad', 'categoria', 'opciones'];
   dataSource: MatTableDataSource<Producto>;
+  // creacion de paginacion de la tabla
+  @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -34,7 +36,6 @@ export class ListarComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.categoriaService.getCategoriaU(this.usuarioService.getUsuario().id);
     // console.log('categorias -- ' + this.categoriaService.getListaC());
     // @ts-ignore
@@ -72,6 +73,8 @@ export class ListarComponent implements OnInit {
       this.elementos = this.productoService.mostrarProductos();
       // console.log('elementos ' + this.elementos);
       this.dataSource = new MatTableDataSource(this.elementos);
+      // paginacion de la tabla
+      this.dataSource.paginator = this.paginacion;
     }, 500);
 
   }

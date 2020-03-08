@@ -11,7 +11,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatIcon,
-  MatInputModule,
+  MatInputModule, MatPaginatorIntl, MatPaginatorModule,
   MatSelectModule,
   MatTableModule
 } from '@angular/material';
@@ -19,6 +19,7 @@ import {CategoriaService} from '../../servicios/categoria.service';
 import {ProductoService} from '../../servicios/producto.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DialogoComponent} from '../../componentes/dialogo/dialogo.component';
+import {MyMatPaginatorInt} from '../../componentes/producto/listar/my-mat-paginator-int';
 
 
 @NgModule({
@@ -29,20 +30,22 @@ import {DialogoComponent} from '../../componentes/dialogo/dialogo.component';
     VerComponent,
     MatIcon
   ],
-  imports: [
-    CommonModule,
-    ProductoRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSelectModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        ProductoRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatTableModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatPaginatorModule
+    ],
   providers: [
     CategoriaService,
-    ProductoService
+    ProductoService,
+    { provide: MatPaginatorIntl, useClass: MyMatPaginatorInt}
   ]
 })
 export class ProductoModule { }
